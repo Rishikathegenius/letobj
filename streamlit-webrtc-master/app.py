@@ -390,7 +390,7 @@ def app_object_detection():
                         COLORS[idx],
                         2,
                     )
-                     t2s("I can see a" + name + "is here")
+                    t2s("I can see a" + name + "is here")
             return image, result
 
         def recv(self, frame: av.VideoFrame) -> av.VideoFrame:
