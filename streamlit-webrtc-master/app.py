@@ -4,8 +4,18 @@ import logging.handlers
 import queue
 import threading
 import urllib.request
+import pyttsx3
 from pathlib import Path
 from typing import List, NamedTuple
+def t2s(command):
+    # Initialize the engine
+    engine = pyttsx3.init()
+    rate = engine.getProperty("rate")
+    en_voice_f = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
+    engine.setProperty("voice", en_voice_f)
+    engine.setProperty("rate", rate)
+    engine.say(command)
+    engine.runAndWait()
 
 try:
     from typing import Literal
@@ -380,6 +390,7 @@ def app_object_detection():
                         COLORS[idx],
                         2,
                     )
+                     t2s("I can see a" + name + "is here")
             return image, result
 
         def recv(self, frame: av.VideoFrame) -> av.VideoFrame:
